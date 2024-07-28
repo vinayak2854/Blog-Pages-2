@@ -1,0 +1,30 @@
+import React from 'react';
+import Header from '../components/Header';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Pagination from '../components/Pagination';
+import Blogs from '../components/Blogs';
+
+const CategoryPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const category = location.pathname.split("/").at(-1);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-pink-400 to-yellow-500 flex flex-col items-center">
+      <Header />
+      <div className="w-full max-w-3xl mt-24">
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-4 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md"
+        >
+          Back
+        </button>
+        <h2 className="text-2xl font-bold mb-4">Blogs on <span>{category}</span></h2>
+        <Blogs />
+        <Pagination />
+      </div>
+    </div>
+  );
+}
+
+export default CategoryPage;
